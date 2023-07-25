@@ -53,6 +53,7 @@ const Section = styled.div`
   flex-direction: column;
   /* font-family: var(--font-mono); */
   transform: rotatex(10deg);
+  color: white;
 
   .selector {
     display: flex;
