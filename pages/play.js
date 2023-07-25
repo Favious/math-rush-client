@@ -11,7 +11,7 @@ import beepSound from "../utils/beep.mp3";
 
 let socket;
 //const ENDPOINT = "http://localhost:8000";
-const ENDPOINT = "https://math-rush-server.vercel.app/";
+const ENDPOINT = "wss://amethyst-spiny-spear.glitch.me/";
 
 export default function Game(props) {
   const router = useRouter();
@@ -39,6 +39,9 @@ export default function Game(props) {
       reconnectionAttempts: "Infinity",
       timeout: 10000,
       transports: ["websocket"],
+      headers: {
+        "user-agent": "Mozilla",
+      },
     };
     socket = io.connect(ENDPOINT, connectionOptions);
 
