@@ -10,8 +10,8 @@ import useSound from "use-sound";
 import beepSound from "../utils/beep.mp3";
 
 let socket;
-const ENDPOINT = "http://localhost:8000";
-//const ENDPOINT = "https://uno-online-multiplayer.herokuapp.com/";
+//const ENDPOINT = "http://localhost:8000";
+const ENDPOINT = "https://math-rush-server.vercel.app/";
 
 export default function Game(props) {
   const router = useRouter();
