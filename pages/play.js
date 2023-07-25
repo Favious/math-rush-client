@@ -273,6 +273,7 @@ const GameLayout = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  color: white;
 
   .game-code {
     margin: 2rem;
