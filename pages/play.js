@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import io from "socket.io-client";
 import styled from "styled-components";
+import styles from "@/styles/Home.module.css";
 import { useRouter } from "next/router";
 import Calculator from "@/components/Calculator";
 import StatusBar from "@/components/StatusBar";
@@ -177,91 +178,96 @@ export default function Game(props) {
   }
 
   return (
-    <GameLayout>
-      {!roomFull ? (
-        <>
-          {users.length !== 2 && (
-            <div className="game-code">
-              <h1>
-                Game code:
-                <span style={{ userSelect: "text" }}> {room}</span>
-              </h1>
-              {/* <h1>
+    <>
+      <div className={styles.stars}></div>
+      <div className={styles.stars2}></div>
+      <div className={styles.stars3}></div>
+      <GameLayout>
+        {!roomFull ? (
+          <>
+            {users.length !== 2 && (
+              <div className="game-code">
+                <h1>
+                  Game code:
+                  <span style={{ userSelect: "text" }}> {room}</span>
+                </h1>
+                {/* <h1>
               Share game link {`http://localhost:3000/play?roomCode=${room}`}
             </h1> */}
-            </div>
-          )}
+              </div>
+            )}
 
-          {/* PLAYER LEFT MESSAGES */}
-          {users.length === 1 && currentUser === "Player 2" && (
-            <h1 className="waiting-message">Player 1 has left the game.</h1>
-          )}
-          {users.length === 1 && currentUser === "Player 1" && (
-            <h1 className="waiting-message">
-              Waiting for Player 2 to join the game...
-            </h1>
-          )}
-          {users.length === 2 && (
-            <>
-              {gameOver ? (
-                <div>
-                  {winner !== "" && (
-                    <>
-                      <h1>GAME OVER</h1>
-                      <h2>{winner} wins!</h2>
-                    </>
-                  )}
-                </div>
-              ) : (
-                <div style={{ width: "100%" }}>
-                  {/* PLAYER 1 VIEW */}
-                  {currentUser === "Player 1" && (
-                    <div className="container">
-                      <Operation
-                        operation={currentOperation}
-                        answer={playerOneAnswer}
-                      />
-                      <StatusBar
-                        operationsMade={playerOneOperationsMade}
-                        player={1}
-                      />
-                      <Calculator
-                        currentOperation={currentOperation}
-                        updateAnswer={updatePlayerOneAnswer}
-                      />
-                    </div>
-                  )}
-                  {/* PLAYER 2 VIEW */}
-                  {currentUser === "Player 2" && (
-                    <div className="container">
-                      <Operation
-                        operation={currentOperation}
-                        answer={playerTwoAnswer}
-                      />
-                      <StatusBar
-                        operationsMade={playerTwoOperationsMade}
-                        player={2}
-                      />
-                      <Calculator
-                        currentOperation={currentOperation}
-                        updateAnswer={updatePlayerTwoAnswer}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-            </>
-          )}
-        </>
-      ) : (
-        <h1>Room full</h1>
-      )}
+            {/* PLAYER LEFT MESSAGES */}
+            {users.length === 1 && currentUser === "Player 2" && (
+              <h1 className="waiting-message">Player 1 has left the game.</h1>
+            )}
+            {users.length === 1 && currentUser === "Player 1" && (
+              <h1 className="waiting-message">
+                Waiting for Player 2 to join the game...
+              </h1>
+            )}
+            {users.length === 2 && (
+              <>
+                {gameOver ? (
+                  <div>
+                    {winner !== "" && (
+                      <>
+                        <h1>GAME OVER</h1>
+                        <h2>{winner} wins!</h2>
+                      </>
+                    )}
+                  </div>
+                ) : (
+                  <div style={{ width: "100%" }}>
+                    {/* PLAYER 1 VIEW */}
+                    {currentUser === "Player 1" && (
+                      <div className="container">
+                        <Operation
+                          operation={currentOperation}
+                          answer={playerOneAnswer}
+                        />
+                        <StatusBar
+                          operationsMade={playerOneOperationsMade}
+                          player={1}
+                        />
+                        <Calculator
+                          currentOperation={currentOperation}
+                          updateAnswer={updatePlayerOneAnswer}
+                        />
+                      </div>
+                    )}
+                    {/* PLAYER 2 VIEW */}
+                    {currentUser === "Player 2" && (
+                      <div className="container">
+                        <Operation
+                          operation={currentOperation}
+                          answer={playerTwoAnswer}
+                        />
+                        <StatusBar
+                          operationsMade={playerTwoOperationsMade}
+                          player={2}
+                        />
+                        <Calculator
+                          currentOperation={currentOperation}
+                          updateAnswer={updatePlayerTwoAnswer}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
+            )}
+          </>
+        ) : (
+          <h1>Room full</h1>
+        )}
 
-      <br />
-      <a href="/">
-        <button className="quit-button">QUIT</button>
-      </a>
-    </GameLayout>
+        <br />
+        <a href="/">
+          <button className="quit-button">QUIT</button>
+        </a>
+      </GameLayout>
+    </>
   );
 }
 
@@ -271,6 +277,7 @@ const GameLayout = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden;
   color: white;
 
   .game-code {

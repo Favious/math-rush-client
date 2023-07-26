@@ -18,6 +18,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <div className={styles.stars}></div>
+        <div className={styles.stars2}></div>
+        <div className={styles.stars3}></div>
         <Section>
           <Logo />
           <div className="selector">
@@ -54,6 +57,10 @@ const Section = styled.div`
   /* font-family: var(--font-mono); */
   transform: rotatex(10deg);
   color: white;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 
   .selector {
     display: flex;
