@@ -54,6 +54,7 @@ const Calc = styled.div`
     background: #6b6b6b;
     border-radius: 0.6rem;
     border: none;
+    position: relative;
     &:hover {
       background: #848484;
     }
