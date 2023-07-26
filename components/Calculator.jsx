@@ -50,6 +50,12 @@ const Calc = styled.div`
     flex: 1 1 30%;
     padding: 0.7rem;
     user-select: none;
+    color: white;
+    background: #6b6b6b;
+    border-radius: 0.6rem;
+    &:hover {
+      background: #848484;
+    }
   }
 
   @media screen and (max-width: 700px) {

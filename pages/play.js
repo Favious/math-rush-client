@@ -114,8 +114,6 @@ export default function Game(props) {
     setCurrentOperation(operations[number]);
     setNumbers(numbers);
 
-    console.log(operations[number]);
-    console.log(numbers);
     socket.emit("initGameState", {
       gameOver: false,
       currentOperation: operations[number],
