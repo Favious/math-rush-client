@@ -53,6 +53,7 @@ const Calc = styled.div`
     color: white;
     background: #6b6b6b;
     border-radius: 0.6rem;
+    border: none;
     &:hover {
       background: #848484;
     }

@@ -284,6 +284,8 @@ const GameLayout = styled.div`
   .waiting-message {
     margin: 1rem;
     font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
   }
 
   .container {
