@@ -17,6 +17,7 @@ const ENDPOINT = "wss://amethyst-spiny-spear.glitch.me/";
 export default function Game(props) {
   const router = useRouter();
   const { roomCode } = router.query;
+  const [numberOfActivePlayers, setNumberOfActivePlayers] = useState(0);
 
   //initialize socket state
   const [room, setRoom] = useState(roomCode);
@@ -98,6 +99,9 @@ export default function Game(props) {
     });
     socket.on("currentUserData", ({ name }) => {
       setCurrentUser(name);
+    });
+    socket.on("globalOnlinePlayersCount", (count) => {
+      setNumberOfActivePlayers(count);
     });
   }, []);
 
@@ -183,6 +187,7 @@ export default function Game(props) {
       <div className={styles.stars2}></div>
       <div className={styles.stars3}></div>
       <GameLayout>
+        <div className="">Online players: {numberOfActivePlayers}</div>
         {!roomFull ? (
           <>
             {users.length !== 2 && (
@@ -191,13 +196,9 @@ export default function Game(props) {
                   Game code:
                   <span style={{ userSelect: "text" }}> {room}</span>
                 </h1>
-                {/* <h1>
-              Share game link {`http://localhost:3000/play?roomCode=${room}`}
-            </h1> */}
               </div>
             )}
 
-            {/* PLAYER LEFT MESSAGES */}
             {users.length === 1 && currentUser === "Player 2" && (
               <h1 className="waiting-message">Player 1 has left the game.</h1>
             )}
@@ -313,6 +314,7 @@ const GameLayout = styled.div`
     cursor: pointer;
 
     background: #ffffff;
+    background-color: #ffffff;
     border: none;
     border-radius: 0.4em;
     color: black;
@@ -322,58 +324,9 @@ const GameLayout = styled.div`
     font-weight: 500;
     letter-spacing: 0.04em;
 
-    mix-blend-mode: color-dodge;
     perspective: 500px;
+    mix-blend-mode: color-dodge;
     transform-style: preserve-3d;
-
-    &:before,
-    &:after {
-      --z: 0px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      content: "";
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      mix-blend-mode: inherit;
-      border-radius: inherit;
-      transform-style: preserve-3d;
-      transform: translate3d(
-        calc(var(--z) * 0px),
-        calc(var(--z) * 0px),
-        calc(var(--z) * 0px)
-      );
-    }
-
-    span {
-      mix-blend-mode: none;
-      display: block;
-    }
-
-    &:after {
-      background-color: #5d00ff;
-    }
-
-    &:before {
-      background-color: #ff1731;
-    }
-
-    &:hover {
-      background-color: #fff65b;
-      transition: background 0.3s 0.1s;
-    }
-
-    &:hover:before {
-      --z: 0.02;
-      animation: translateWobble 2.2s ease forwards;
-    }
-
-    &:hover:after {
-      --z: -0.035;
-      animation: translateWobble 2.2s ease forwards;
-    }
   }
 
   @keyframes translateWobble {
